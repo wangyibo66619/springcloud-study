@@ -1,0 +1,22 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: springcloud-zuul  # 服务名称
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: zuul9527.com    # 修改eureka上的默认描述信息
+    prefer-ip-address: true
+info:
+  app.name: wang-springcloud
+  company.name: www.wang.com
+
+zuul:
+  routes:
+    mydept.serviceId: springcloud-provider-dept # 原来的服务名
+    mydept.path: /mydept/**  # 改成我们想设置的，代替服务名
+  ignored-services: "*"   # 隐藏全部的 ignore 忽略
+  prefix: /wang   # prefix: 配置前缀
